@@ -1,0 +1,32 @@
+---
+version: '3.7'
+
+services:
+
+  sip-uas:
+    build:
+      context: .
+    volumes:
+      - ./${SIP_UC}/uas/scenario:/sipp/scenario
+      - ./${SIP_UC}/uas/entrypoint.sh:/sipp/entrypoint.sh
+    networks:
+      sip-sandbox:
+        aliases:
+          - sip-uas
+    expose:
+      - "5060"
+
+  sip-uac:
+    build:
+      context: .
+    volumes:
+      - ./${SIP_UC}/uac/scenario:/sipp/scenario
+      - ./${SIP_UC}/uac/entrypoint.sh:/sipp/entrypoint.sh
+    networks:
+      sip-sandbox:
+        aliases:
+          - sip-uac
+
+networks:
+  sip-sandbox:
+    driver: bridge

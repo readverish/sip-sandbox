@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-2" ?>
+
+<scenario name="SIP Egress Register">
+
+  <send retrans="500">
+    <![CDATA[
+      REGISTER sip:sippudp-uac:5061 SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      From: sipp <sip:sipp@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+      To: <sip:[field1]@[remote_ip]>
+      Call-ID: [call_id]
+      CSeq: 1 REGISTER
+      Max-Forwards: 70
+      Content-Length:0
+    ]]>
+  </send>
+
+  <recv response="200" timeout="30000">
+  </recv>
+
+  <!-- response time repartition table (ms)   -->
+  <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200"/>
+
+  <!-- call length repartition table (ms)     -->
+  <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
+</scenario>
