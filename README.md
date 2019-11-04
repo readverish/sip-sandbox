@@ -20,7 +20,7 @@ An example scenario to exchange SIP REGISTER traffic over UDP is provided.
 ## Running the example
 
 ```
-$ SIPP_UC=udp docker-compose up --build
+$ SIP_UC=udp docker-compose up --build
 ```
 
 The output screens of SIPp for the UAC and UAS will be shown in the stdout. 
